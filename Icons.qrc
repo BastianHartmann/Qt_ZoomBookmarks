@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Add_Icon_zoom_bookmarks.png</file>
+        <file>App_icon.ico</file>
+        <file>App_icon.png</file>
+        <file>Meeting_icon_zoom_bookmarks.png</file>
+        <file>Trash_Icon_zoom_bookmarks.png</file>
+    </qresource>
+</RCC>

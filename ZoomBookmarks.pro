@@ -26,7 +26,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     .gitignore \
     Add_Icon_zoom_bookmarks.png \
+    App_icon.ico \
     App_icon.png \
     Meeting_icon_zoom_bookmarks.png \
     README.md \
     Trash_Icon_zoom_bookmarks.png
+
+RC_ICONS = App_icon.ico
+
+RESOURCES += \
+    Icons.qrc
