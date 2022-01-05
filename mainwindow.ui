@@ -6,16 +6,299 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>645</width>
+    <height>485</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
+  <property name="minimumSize">
+   <size>
+    <width>645</width>
+    <height>485</height>
+   </size>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QStatusBar" name="statusbar"/>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">ZoomBookmarks</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>App_icon.png</normaloff>App_icon.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="English" country="Germany"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
+    <property name="leftMargin">
+     <number>5</number>
+    </property>
+    <property name="topMargin">
+     <number>5</number>
+    </property>
+    <property name="rightMargin">
+     <number>5</number>
+    </property>
+    <property name="bottomMargin">
+     <number>5</number>
+    </property>
+    <item>
+     <widget class="QGroupBox" name="MeetingBox">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="title">
+       <string notr="true">Meetings</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_meetings">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="MeetingsLayoutLeft" stretch="15,2">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <property name="leftMargin">
+          <number>1</number>
+         </property>
+         <property name="topMargin">
+          <number>1</number>
+         </property>
+         <property name="rightMargin">
+          <number>1</number>
+         </property>
+         <property name="bottomMargin">
+          <number>1</number>
+         </property>
+         <item>
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>297</width>
+              <height>360</height>
+             </rect>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="ButtonLayout" stretch="1,1,4">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="AddButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>46</width>
+               <height>46</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add new meeting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Add_Icon_zoom_bookmarks.png</normaloff>Add_Icon_zoom_bookmarks.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="TrashButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>46</width>
+               <height>46</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected meeting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Trash_Icon_zoom_bookmarks.png</normaloff>Trash_Icon_zoom_bookmarks.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="InformationBox">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string notr="true">Meeting Information</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_information">
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="InformationLayoutLeft" stretch="15,2">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <property name="leftMargin">
+          <number>1</number>
+         </property>
+         <property name="topMargin">
+          <number>1</number>
+         </property>
+         <property name="rightMargin">
+          <number>1</number>
+         </property>
+         <property name="bottomMargin">
+          <number>1</number>
+         </property>
+         <item>
+          <widget class="QTextBrowser" name="InformationDisplay">
+           <property name="markdown">
+            <string>No meeting selected or added.
+
+</string>
+           </property>
+           <property name="html">
+            <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;No meeting selected or added.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="AttendButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Attend Meeting</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>645</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
