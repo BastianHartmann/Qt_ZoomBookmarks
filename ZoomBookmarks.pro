@@ -25,4 +25,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     .gitignore \
-    README.md
+    Add_Icon_zoom_bookmarks.png \
+    App_icon.png \
+    Meeting_icon_zoom_bookmarks.png \
+    README.md \
+    Trash_Icon_zoom_bookmarks.png
