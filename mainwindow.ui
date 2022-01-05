@@ -25,8 +25,8 @@
    <string notr="true">ZoomBookmarks</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>App_icon.png</normaloff>App_icon.png</iconset>
+   <iconset resource="Icons.qrc">
+    <normaloff>:/App_icon.ico</normaloff>:/App_icon.ico</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="Germany"/>
@@ -138,8 +138,8 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Add_Icon_zoom_bookmarks.png</normaloff>Add_Icon_zoom_bookmarks.png</iconset>
+              <iconset resource="Icons.qrc">
+               <normaloff>:/Add_Icon_zoom_bookmarks.png</normaloff>:/Add_Icon_zoom_bookmarks.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -173,8 +173,8 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Trash_Icon_zoom_bookmarks.png</normaloff>Trash_Icon_zoom_bookmarks.png</iconset>
+              <iconset resource="Icons.qrc">
+               <normaloff>:/Trash_Icon_zoom_bookmarks.png</normaloff>:/Trash_Icon_zoom_bookmarks.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -300,6 +300,8 @@ p, li { white-space: pre-wrap; }
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="Icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
