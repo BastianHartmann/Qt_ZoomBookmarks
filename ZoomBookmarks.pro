@@ -30,9 +30,11 @@ DISTFILES += \
     App_icon.png \
     Meeting_icon_zoom_bookmarks.png \
     README.md \
-    Trash_Icon_zoom_bookmarks.png
+    Trash_Icon_zoom_bookmarks.png \
+    meetings.json
 
 RC_ICONS = App_icon.ico
 
 RESOURCES += \
-    Icons.qrc
+    Icons.qrc \
+    data.qrc

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/meetings">
+        <file>meetings.json</file>
+    </qresource>
+</RCC>
