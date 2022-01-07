@@ -6,6 +6,8 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QDir>
+#include <QFileInfo>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -40,15 +42,20 @@ void MainWindow::on_AddButton_clicked()
     QList<QObject*> QObjectList = ui -> scrollAreaWidgetContents -> children();
     QObject* top_meeting = QObjectList.takeLast();
     qDebug() << top_meeting->objectName();
+    QString curr_path = QDir::currentPath();
+    qDebug() << QDir::currentPath();
 
-    QFile jsonFile("meetings.json");
+    QFile jsonFile(curr_path + "/meetings.json");
 
-    if (!jsonFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+    if (jsonFile.open(QFile::ReadOnly | QFile::Text)){
         jsonString.setValue(jsonFile.readAll());
     } else {
         qDebug() << "meetings.json file was not found!" << "\n";
     }
     qDebug() << jsonString.value();
+
+    ui->InformationDisplay->clear();
+    ui->InformationDisplay->insertPlainText(jsonString.value());
 
 }
 

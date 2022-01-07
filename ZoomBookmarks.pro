@@ -36,5 +36,4 @@ DISTFILES += \
 RC_ICONS = App_icon.ico
 
 RESOURCES += \
-    Icons.qrc \
-    data.qrc
+    Icons.qrc
