@@ -8,6 +8,9 @@
 #include <QJsonValue>
 #include <QDir>
 #include <QFileInfo>
+#include <QPushButton>
+#include <QIcon>
+#include <QStyleOptionButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,17 +18,34 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-//    QFile jsonFile("meetings.json");
+    // Creating the QFile object to the meetings.json file.
+    QFile jsonFile("meetings.json");
 
-//    if (!jsonFile.open(QIODevice::ReadOnly | QIODevice::Text)){
-//        jsonString.setValue(jsonFile.readAll());
-//    } else {
-//        qDebug() << "meetings.json file was not found!" << "\n";
-//    }
-//    qDebug() << jsonString.value();
-//    QJsonDocument meetingsDoc = QJsonDocument::fromJson(jsonString.value().toUtf8());
-//    QJsonObject meetingsObj = meetingsDoc.object();
-//    qDebug() << meetingsObj.value("Meeting1");
+    // Open the meetings.json QFile.
+    if (jsonFile.open(QFile::ReadOnly | QFile::Text)){
+        jsonString.setValue(jsonFile.readAll());}
+    else{
+        qDebug() << "meetings.json file was not found!" << "\n";
+    }
+
+    // Convert the jsonString to a QJsonObject and store it in the jsonObj property.
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonString.value().toUtf8());
+    jsonObj.setValue(jsonDoc.object());
+    QJsonObject obj = jsonObj.value();
+
+    if (obj.size() > 0){
+            QStringList keys = obj.keys();
+            // Determine number of stored meetings
+            QString lastMeeting = keys.last();
+            lastMeeting.replace("Meeting","");
+            int numOfMeetings = lastMeeting.toInt();
+            for(int i = 0; i < numOfMeetings; ++i){
+                QJsonValue curr_val = obj.value(keys.at(i));
+                AddMeetingButton(i+1,curr_val);
+            }
+        }
+
+
 
 }
 
@@ -42,20 +62,54 @@ void MainWindow::on_AddButton_clicked()
     QList<QObject*> QObjectList = ui -> scrollAreaWidgetContents -> children();
     QObject* top_meeting = QObjectList.takeLast();
     qDebug() << top_meeting->objectName();
-    QString curr_path = QDir::currentPath();
-    qDebug() << QDir::currentPath();
 
-    QFile jsonFile(curr_path + "/meetings.json");
+}
 
-    if (jsonFile.open(QFile::ReadOnly | QFile::Text)){
-        jsonString.setValue(jsonFile.readAll());
-    } else {
-        qDebug() << "meetings.json file was not found!" << "\n";
+void MainWindow::AddMeetingButton(int meetingNum, QJsonValue jVal)
+{
+    QString buttonName = "Meeting" + QString::number(meetingNum);
+
+    // Get Infos from Json value for the meeting button
+    QString name = jVal["Name"].toString();
+    QString date = jVal["Date"].toString();
+    QString startTime = jVal["StartTime"].toString();
+    QString endTime = jVal["EndTime"].toString();
+
+    if(meetingNum==1)
+    {
+        // Set Text of corresponding button
+        QString button_text = name + "\n" + date + "\n" + startTime + " - " + endTime;
+        ui->Meeting1->setText(button_text);
+
+        // Set Text in the InformationDisplay
+        QString InfoText = FormatInfoText(jVal);
+        ui->InformationDisplay->clear();
+        ui->InformationDisplay->setHtml(InfoText);
+
     }
-    qDebug() << jsonString.value();
+    else
+    {
+        // Code for other Meetings
+        QPushButton* newButton = new QPushButton(this);
+        ui->verticalLayout_ScrollArea->addWidget(newButton);
+        newButton->objectName() = buttonName;
+    }
 
-    ui->InformationDisplay->clear();
-    ui->InformationDisplay->insertPlainText(jsonString.value());
+}
 
+QString MainWindow::FormatInfoText(QJsonValue jVal)
+{
+    // Get Infos from Json value
+    QString name = jVal["Name"].toString();
+    QString date = jVal["Date"].toString();
+    QString startTime = jVal["StartTime"].toString();
+    QString endTime = jVal["EndTime"].toString();
+    QString link = jVal["MLink"].toString();
+    QString ID = jVal["MID"].toString();
+    QString Pw = jVal["MPW"].toString();
+
+    QString outputText = "<b>Meeting:</b><br>" + name + "<br><br>" + "<b>Date:</b><br>" + date + "<br><br>" + "<b>Time:</b><br>" + startTime + " - " + endTime + "<br><br><br>" + "<b><u>Zoom Info:</u></b><br><br>" + "<b>Link:</b> <a href="+link+">" + link + "</a><br><br>" + "<b>Meeting-ID:</b> " + ID + "<br>" + "<b>Meeting-PW:</b> " + Pw + "<br>";
+
+    return outputText;
 }
 

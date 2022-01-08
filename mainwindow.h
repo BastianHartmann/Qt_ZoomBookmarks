@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QProperty>
+#include <QJsonObject>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,10 +13,13 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     QProperty<QString> jsonString;
+    QProperty<QJsonObject> jsonObj;
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void AddMeetingButton(int meetingNum, QJsonValue jVal);
+    QString FormatInfoText(QJsonValue jVal);
 
 
 
