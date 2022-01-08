@@ -2,7 +2,7 @@
 	"Meeting1":{
 		"Name":"CANTER - Lab Meeting",
 		"Type":"multi",
-		"Date": "",
+		"Date": "Thursday - Every Week",
 		"StartTime":"9:00",
 		"EndTime":"9:30",
 		"MLink":"https://hm-edu.zoom.us/j/95786048780?pwd=eGJpeHFNNjI3Z1kzYU9IS0t5WjRsUT09",
@@ -10,13 +10,13 @@
 		"MPW":"733857"
         },
 	"Meeting2":{
-		"Name":"",
-		"Type":"",
-		"Date":"",
-		"StartTime":"",
-		"EndTime":"",
-		"MLink":"",
-		"MID":"",
-		"MPW":""
+		"Name":"DummyName",
+		"Type":"DummyType",
+		"Date":"DummyDate",
+		"StartTime":"DummyStartTime",
+		"EndTime":"DummyEndTime",
+		"MLink":"https://hm.edu.zoom.us/DummyLink",
+		"MID":"DummyID",
+		"MPW":"DummyPW"
 	}
 }
