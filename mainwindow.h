@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     QProperty<QString> jsonString;
     QProperty<QJsonObject> jsonObj;
+    QProperty<QString> currMeeting;
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -25,6 +26,8 @@ public:
 
 private slots:
     void on_AddButton_clicked();
+
+    void on_Meeting1_clicked();
 
 private:
     Ui::MainWindow *ui;
