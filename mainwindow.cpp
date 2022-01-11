@@ -11,6 +11,7 @@
 #include <QPushButton>
 #include <QIcon>
 #include <QStyleOptionButton>
+#include "addmeetingdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -62,6 +63,10 @@ void MainWindow::on_AddButton_clicked()
     QList<QObject*> QObjectList = ui -> scrollAreaWidgetContents -> children();
     QObject* top_meeting = QObjectList.takeLast();
     qDebug() << top_meeting->objectName();
+
+    // Open AddMeetingDialog
+    AddMeetingDialog MeetDiag(this);
+    MeetDiag.exec();
 
 }
 
