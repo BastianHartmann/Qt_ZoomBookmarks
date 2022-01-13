@@ -34,6 +34,7 @@ DISTFILES += \
     Meeting_icon_zoom_bookmarks.png \
     README.md \
     Trash_Icon_zoom_bookmarks.png \
+    ZoomBookmarks_install.zip \
     meetings.json
 
 RC_ICONS = App_icon.ico
