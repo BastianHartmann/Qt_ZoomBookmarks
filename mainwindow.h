@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QProperty>
+#include <QString>
 #include <QJsonObject>
 
 QT_BEGIN_NAMESPACE
@@ -12,14 +13,20 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
     QProperty<QString> jsonString;
+
     QProperty<QJsonObject> jsonObj;
+
     QProperty<QString> currMeeting;
+
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
     void AddMeetingButton(int meetingNum, QJsonValue jVal);
+
     QString FormatInfoText(QJsonValue jVal);
 
 
@@ -28,6 +35,15 @@ private slots:
     void on_AddButton_clicked();
 
     void on_Meeting1_clicked();
+
+    void highlightMeetings();
+
+    void on_TrashButton_clicked();
+
+    void on_AttendButton_clicked();
+
+public slots:
+    void receiveMeetingData(QJsonObject);
 
 private:
     Ui::MainWindow *ui;

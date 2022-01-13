@@ -105,8 +105,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>298</width>
-              <height>74</height>
+              <width>297</width>
+              <height>76</height>
              </rect>
             </property>
             <property name="sizePolicy">
@@ -355,6 +355,9 @@ p, li { white-space: pre-wrap; }
          </item>
          <item>
           <widget class="QPushButton" name="AttendButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -379,7 +382,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>645</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

@@ -2,6 +2,8 @@
 #define ADDMEETINGDIALOG_H
 
 #include <QDialog>
+#include <QString>
+#include <QJsonObject>
 
 namespace Ui {
 class AddMeetingDialog;
@@ -22,6 +24,9 @@ private slots:
     void on_radioButton_typeSingle_clicked();
 
     void on_buttonBox_Save_Cancel_accepted();
+
+signals:
+    void sendMeetingInfo(QJsonObject);
 
 private:
     Ui::AddMeetingDialog *ui;

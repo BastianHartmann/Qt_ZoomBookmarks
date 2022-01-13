@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>308</width>
-    <height>406</height>
+    <height>507</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>308</width>
-    <height>406</height>
+    <height>507</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>308</width>
-    <height>406</height>
+    <height>511</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -107,7 +107,10 @@
       <item>
        <widget class="QLineEdit" name="MeetingName_lineEdit">
         <property name="text">
-         <string>Enter name of meeting</string>
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>No name entered</string>
         </property>
         <property name="clearButtonEnabled">
          <bool>false</bool>
@@ -161,7 +164,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit">
+       <widget class="QDateEdit" name="selectDateEdit">
         <property name="minimumSize">
          <size>
           <width>95</width>
@@ -315,7 +318,7 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>5</number>
+         <number>1</number>
         </property>
         <property name="maxCount">
          <number>7</number>
@@ -490,6 +493,73 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="MeetingInfoBox">
+     <property name="title">
+      <string>Meeting Info:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>5</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="IDLineEdit">
+          <property name="placeholderText">
+           <string>Meeting-ID (optional)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="linkLineEdit">
+          <property name="placeholderText">
+           <string>Meeting Link</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="IDLabel">
+          <property name="text">
+           <string>ID:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="linkLabel">
+          <property name="text">
+           <string>Link:  </string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="PWLabel">
+          <property name="text">
+           <string>PW:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="PWLineEdit">
+          <property name="placeholderText">
+           <string>Meeting-Password (optional)</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox_Save_Cancel">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -504,6 +574,19 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>radioButton_typeSingle</tabstop>
+  <tabstop>radioButton_typeRecurr</tabstop>
+  <tabstop>MeetingName_lineEdit</tabstop>
+  <tabstop>selectDateEdit</tabstop>
+  <tabstop>selectDayDropdown</tabstop>
+  <tabstop>selectFrequDropdown</tabstop>
+  <tabstop>StartTimeEdit</tabstop>
+  <tabstop>EndTimeEdit</tabstop>
+  <tabstop>linkLineEdit</tabstop>
+  <tabstop>IDLineEdit</tabstop>
+  <tabstop>PWLineEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -513,8 +596,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>255</x>
+     <y>499</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -529,8 +612,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>300</x>
+     <y>499</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
