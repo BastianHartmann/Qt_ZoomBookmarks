@@ -385,7 +385,22 @@ p, li { white-space: pre-wrap; }
      <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAbout">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout_ZoomBookmarks"/>
+   </widget>
+   <addaction name="menuAbout"/>
   </widget>
+  <action name="actionAbout_ZoomBookmarks">
+   <property name="text">
+    <string>About ZoomBookmarks</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="Icons.qrc"/>

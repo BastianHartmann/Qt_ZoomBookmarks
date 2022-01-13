@@ -42,6 +42,8 @@ private slots:
 
     void on_AttendButton_clicked();
 
+    void on_actionAbout_ZoomBookmarks_triggered();
+
 public slots:
     void receiveMeetingData(QJsonObject);
 

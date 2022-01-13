@@ -360,3 +360,9 @@ void MainWindow::on_AttendButton_clicked()
 
 }
 
+
+void MainWindow::on_actionAbout_ZoomBookmarks_triggered()
+{
+    QMessageBox::information(this,"About ZoomBookmarks","ZoomBoomarks - Manage your online meetings.\nCopyright (C) 2022  Bastian Hartmann\n\nYou should have received a copy of the\nGNU General Public License along with this program.\nIf not, see: https://www.gnu.org/licenses/",QMessageBox::Ok);
+}
+
