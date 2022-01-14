@@ -16,6 +16,9 @@
 #include <QStringList>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QPoint>
+#include <QMenu>
+#include <QAction>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,6 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonString.value().toUtf8());
     jsonObj.setValue(jsonDoc.object());
     QJsonObject obj = jsonObj.value();
+
+    // Create PushButton Context Menu via a slot
+    ui->Meeting1->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->Meeting1,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(slotCustomMenuRequested(QPoint)));
 
     if (obj.size() > 0){
         QStringList keys = obj.keys();
@@ -69,7 +76,7 @@ void MainWindow::on_AddButton_clicked()
     qDebug() << top_meeting->objectName();
 
     // Open AddMeetingDialog
-    AddMeetingDialog MeetDiag(this);
+    AddMeetingDialog MeetDiag(this,"add");
     MeetDiag.exec();
 
 }
@@ -140,6 +147,10 @@ void MainWindow::AddMeetingButton(int meetingNum, QJsonValue jVal)
         newButton->setFlat(false);
         // connect the new button to the clicked() slot of the meeting1 button.
         connect(newButton,SIGNAL(clicked()),this,SLOT(on_Meeting1_clicked()));
+        // Connect to context menu signals and slots
+        newButton->setContextMenuPolicy(Qt::CustomContextMenu);
+        connect(newButton,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(slotCustomMenuRequested(QPoint)));
+
 
     }
 
@@ -364,5 +375,28 @@ void MainWindow::on_AttendButton_clicked()
 void MainWindow::on_actionAbout_ZoomBookmarks_triggered()
 {
     QMessageBox::information(this,"About ZoomBookmarks","ZoomBoomarks - Manage your online meetings.\nCopyright (C) 2022  Bastian Hartmann\n\nYou should have received a copy of the\nGNU General Public License along with this program.\nIf not, see: https://www.gnu.org/licenses/",QMessageBox::Ok);
+}
+
+void MainWindow::editMeetingData(QJsonObject editObj, QString editName){
+    // Code to edit the corresponding jsonObj
+    qDebug() << "Let's edit " << editName << Qt::endl;
+}
+
+void MainWindow::slotCustomMenuRequested(QPoint pos){
+    QObject* sendObj = sender();
+    QPushButton* sendButton = qobject_cast<QPushButton*>(sendObj);
+    QMenu* buttonMenu = new QMenu(this);
+    QAction* editMeeting = new QAction("Edit",this);
+    connect(editMeeting,SIGNAL(triggered()),this,SLOT(slotEditMeeting()));
+    buttonMenu->addAction(editMeeting);
+    buttonMenu->popup(sendButton->mapToGlobal(pos));
+}
+
+void MainWindow::slotEditMeeting(){
+    // Open AddMeetingDialog in edit mode
+    QObject* sendObj = sender();
+    QString sendMeeting = sendObj->objectName();
+    AddMeetingDialog MeetDiag(this,"edit",sendMeeting);
+    MeetDiag.exec();
 }
 

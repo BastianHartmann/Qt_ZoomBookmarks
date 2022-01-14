@@ -6,14 +6,48 @@
 #include <QJsonObject>
 #include <QDate>
 
-AddMeetingDialog::AddMeetingDialog(QWidget *parent) :
+AddMeetingDialog::AddMeetingDialog(QWidget *parent, QString addType, QString meetName) :
     QDialog(parent),
     ui(new Ui::AddMeetingDialog)
 {
     ui->setupUi(this);
-    selMeetingType = "single";
-    ui->selectDateEdit->setDate(QDate::currentDate());
-    connect(this,SIGNAL(sendMeetingInfo(QJsonObject)),parent,SLOT(receiveMeetingData(QJsonObject)));
+    guiType.setValue(addType);
+    if(addType == "add"){
+        selMeetingType.setValue("single");
+        ui->selectDateEdit->setDate(QDate::currentDate());
+        connect(this,SIGNAL(sendMeetingInfo(QJsonObject)),parent,SLOT(receiveMeetingData(QJsonObject)));
+    }
+    else if(addType == "edit"){
+        editMeeting.setValue(meetName);
+        MainWindow* parentUi = qobject_cast<MainWindow*>(parent);
+        QJsonValue constructVal = parentUi->jsonObj.value().value(meetName);
+        QString MName = constructVal["Name"].toString();
+        QString MType = constructVal["Type"].toString();
+        QString MDate = constructVal["Date"].toString();
+        QString MSTime = constructVal["StartTime"].toString();
+        QString METime = constructVal["EndTime"].toString();
+        QString MLink = constructVal["MLink"].toString();
+        QString MID = constructVal["MID"].toString();
+        QString MPW = constructVal["MPW"].toString();
+        selMeetingType.setValue(MType);
+        if(MType=="recurring"){
+            ui->radioButton_typeRecurr->setChecked(true);
+            QStringList dateString = MDate.split(" - ");
+            ui->selectDayDropdown->setCurrentText(dateString[0]);
+            ui->selectFrequDropdown->setCurrentText(dateString[1]);
+        }
+        else {
+            QDate mDate = QDate::fromString(MDate,"dd.MM.yyyy");
+            ui->selectDateEdit->setDate(mDate);
+        }
+        ui->MeetingName_lineEdit->setText(MName);
+        ui->StartTimeEdit->setTime(QTime::fromString(MSTime,"hh:mm"));
+        ui->EndTimeEdit->setTime(QTime::fromString(METime,"hh:mm"));
+        ui->linkLineEdit->setText(MLink);
+        ui->IDLineEdit->setText(MID);
+        ui->PWLineEdit->setText(MPW);
+        connect(this,SIGNAL(sendMeetingInfo(QJsonObject,QString)),parent,SLOT(editMeetingData(QJsonObject,QString)));
+    }
 }
 
 AddMeetingDialog::~AddMeetingDialog()
@@ -91,6 +125,11 @@ void AddMeetingDialog::on_buttonBox_Save_Cancel_accepted()
     jsonMeetObj.insert("MPW",MPW);
 
     // send QString and QJsonObject to MainWindow
-    emit sendMeetingInfo(jsonMeetObj);
+    if(guiType.value()=="add"){
+        emit sendMeetingInfo(jsonMeetObj);
+    }
+    else{
+        emit sendMeetingInfo(jsonMeetObj,editMeeting.value());
+    }
 }
 

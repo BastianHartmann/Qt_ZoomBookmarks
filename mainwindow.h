@@ -5,6 +5,8 @@
 #include <QProperty>
 #include <QString>
 #include <QJsonObject>
+#include <QPoint>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,10 +18,7 @@ class MainWindow : public QMainWindow
 
     QProperty<QString> jsonString;
 
-    QProperty<QJsonObject> jsonObj;
-
     QProperty<QString> currMeeting;
-
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -28,6 +27,8 @@ public:
     void AddMeetingButton(int meetingNum, QJsonValue jVal);
 
     QString FormatInfoText(QJsonValue jVal);
+
+    QProperty<QJsonObject> jsonObj;
 
 
 
@@ -44,8 +45,14 @@ private slots:
 
     void on_actionAbout_ZoomBookmarks_triggered();
 
+    void slotCustomMenuRequested(QPoint);
+
+    void slotEditMeeting();
+
 public slots:
     void receiveMeetingData(QJsonObject);
+
+    void editMeetingData(QJsonObject,QString);
 
 private:
     Ui::MainWindow *ui;

@@ -14,9 +14,14 @@ class AddMeetingDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddMeetingDialog(QWidget *parent = nullptr);
+    explicit AddMeetingDialog(QWidget *parent = nullptr,QString callType = "add", QString meetName = "Meeting1");
     ~AddMeetingDialog();
+
     QProperty<QString>selMeetingType;
+
+    QProperty<QString>editMeeting;
+
+    QProperty<QString>guiType;
 
 private slots:
     void on_radioButton_typeRecurr_clicked();
@@ -27,6 +32,8 @@ private slots:
 
 signals:
     void sendMeetingInfo(QJsonObject);
+
+    void sendMeetingInfo(QJsonObject,QString);
 
 private:
     Ui::AddMeetingDialog *ui;

@@ -106,7 +106,7 @@
               <x>0</x>
               <y>0</y>
               <width>297</width>
-              <height>76</height>
+              <height>80</height>
              </rect>
             </property>
             <property name="sizePolicy">
@@ -148,6 +148,9 @@
                    <strikeout>false</strikeout>
                    <kerning>true</kerning>
                   </font>
+                 </property>
+                 <property name="contextMenuPolicy">
+                  <enum>Qt::CustomContextMenu</enum>
                  </property>
                  <property name="autoFillBackground">
                   <bool>false</bool>
@@ -382,7 +385,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>645</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout">
