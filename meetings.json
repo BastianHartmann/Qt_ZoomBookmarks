@@ -1,6 +1,6 @@
 {
     "Meeting1": {
-        "Date": "16.01.2022",
+        "Date": "14.01.2022",
         "EndTime": "12:00",
         "MID": "123456789",
         "MLink": "www.google.de",
@@ -10,7 +10,7 @@
         "Type": "single"
     },
     "Meeting2": {
-        "Date": "Wednesday - monthly",
+        "Date": "Saturday - monthly",
         "EndTime": "09:30",
         "MID": "123456789",
         "MLink": "www.amazon.de",
