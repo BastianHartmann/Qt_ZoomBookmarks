@@ -265,6 +265,9 @@ void MainWindow::highlightMeetings()
             else if(currDate < QDate::currentDate()){
                 currButton->setStyleSheet("text-align:left; background-color:red");
             }
+            else {
+                currButton->setStyleSheet("text-align:left");
+            }
         }
         else if (currType=="recurring"){
             QString MDateString = currValue["Date"].toString();
@@ -273,6 +276,9 @@ void MainWindow::highlightMeetings()
             QString dayOfWeek = QDate::currentDate().toString("dddd");
             if(MDay==dayOfWeek){
                 currButton->setStyleSheet("text-align:left; background-color:green");
+            }
+            else{
+                currButton->setStyleSheet("text-align:left");
             }
 
         }
@@ -378,15 +384,65 @@ void MainWindow::on_actionAbout_ZoomBookmarks_triggered()
 }
 
 void MainWindow::editMeetingData(QJsonObject editObj, QString editName){
-    // Code to edit the corresponding jsonObj
-    qDebug() << "Let's edit " << editName << Qt::endl;
+    // Create new QJsonValue from meetingObj
+    QJsonValue newMeetVal(editObj);
+    // Get the stored jsonObj
+    QJsonObject allMeetObj = jsonObj.value();
+    // Add the new meeting to jsonObj
+    allMeetObj[editName] = newMeetVal;
+    // store newObj in jsonObj property
+    jsonObj.setValue(allMeetObj);
+
+    // Convert the new QJsonObject to QJsonDocument for writing to meetings.json
+    QJsonDocument writeDoc(allMeetObj);
+    QFile writeFile("meetings.json");
+    if(writeFile.open(QFile::WriteOnly | QFile::Text)){
+        writeFile.write(writeDoc.toJson());
+    }
+    else {
+        qDebug() << "meetings.json was not accessible for writing!" << Qt::endl;
+    }
+
+    // Get values
+    QString name = newMeetVal["Name"].toString();
+    QString date = newMeetVal["Date"].toString();
+    QString startTime = newMeetVal["StartTime"].toString();
+    QString endTime = newMeetVal["EndTime"].toString();
+
+    // get pointer to the edited button
+    QPushButton* editedButton = ui->scrollAreaWidgetContents->findChild<QPushButton*>(editName);
+
+    // Set Text of corresponding button
+    QString button_text = name + "\n" + date + "\n" + startTime + " - " + endTime;
+    editedButton->setText(button_text);
+
+    highlightMeetings();
+
+    // select the edited button and deselect others
+    QList<QPushButton*> buttonList = ui->scrollAreaWidgetContents->findChildren<QPushButton*>();
+    int length = buttonList.size();
+    for(int i = 0; i < length; ++i){
+        QPushButton* currButton = buttonList.at(i);
+        currButton->setChecked(false);
+    }
+
+    editedButton->setChecked(true);
+    // show new text in info box
+    QString showText = FormatInfoText(newMeetVal);
+    ui->InformationDisplay->clear();
+    ui->InformationDisplay->setHtml(showText);
 }
 
 void MainWindow::slotCustomMenuRequested(QPoint pos){
+    QJsonObject meetingsObj = jsonObj.value();
+    if(meetingsObj.isEmpty()){
+        return;
+    }
     QObject* sendObj = sender();
     QPushButton* sendButton = qobject_cast<QPushButton*>(sendObj);
-    QMenu* buttonMenu = new QMenu(this);
-    QAction* editMeeting = new QAction("Edit",this);
+    QString buttonName = sendButton->objectName();
+    QMenu* buttonMenu = new QMenu(sendButton);
+    QAction* editMeeting = new QAction("Edit",sendButton);
     connect(editMeeting,SIGNAL(triggered()),this,SLOT(slotEditMeeting()));
     buttonMenu->addAction(editMeeting);
     buttonMenu->popup(sendButton->mapToGlobal(pos));
@@ -395,7 +451,8 @@ void MainWindow::slotCustomMenuRequested(QPoint pos){
 void MainWindow::slotEditMeeting(){
     // Open AddMeetingDialog in edit mode
     QObject* sendObj = sender();
-    QString sendMeeting = sendObj->objectName();
+    QObject* sendParent = sendObj->parent();
+    QString sendMeeting = sendParent->objectName();
     AddMeetingDialog MeetDiag(this,"edit",sendMeeting);
     MeetDiag.exec();
 }

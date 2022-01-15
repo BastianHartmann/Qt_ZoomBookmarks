@@ -35,6 +35,9 @@ AddMeetingDialog::AddMeetingDialog(QWidget *parent, QString addType, QString mee
             QStringList dateString = MDate.split(" - ");
             ui->selectDayDropdown->setCurrentText(dateString[0]);
             ui->selectFrequDropdown->setCurrentText(dateString[1]);
+            ui->SingleDateBox->setEnabled(false);
+            ui->RecurrOptionBox->setEnabled(true);
+            ui->selectDateEdit->setDate(QDate::currentDate());
         }
         else {
             QDate mDate = QDate::fromString(MDate,"dd.MM.yyyy");
