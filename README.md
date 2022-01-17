@@ -15,7 +15,7 @@ If you already have an installed version of ZoomBookmarks on your computer and y
 version without loosing your saved meetings, you can follow the following steps:
 
 1. Download the zip file of the newer version.
-2. Before you unzip and copy the new files to your programm folder, copy the **meetings.json** file and save it to somewhere else.
+2. Before you unzip and copy the new files to your programm folder, copy the **meetings.json** file from your old program folder and save it to somewhere else.
 3. Now you can replace the program files with the files of the newer version.
 4. Finally, replace the new (and empty) **meetings.json** file with the one you saved in step 2.
 
