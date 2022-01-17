@@ -19,6 +19,10 @@ version without loosing your saved meetings, you can follow the following steps:
 3. Now you can replace the program files with the files of the newer version.
 4. Finally, replace the new (and empty) **meetings.json** file with the one you saved in step 2.
 
+## Patch Notes:
+### Version 1.1
+* Functionality of editing existing meetings has been added.
+
 ## Copyright
 
 ZoomBoomarks - Manage your online meetings.
