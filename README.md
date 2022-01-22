@@ -2,6 +2,14 @@
 
 Simple tool for managing all your online meetings and an easy way to attend them with just one click.
 
+This README file contains the following sections:
+
+- [Installation](#installation)
+- [Updating](#updating)
+- [Automatic Execution at Startup](#automatic-execution-at-startup)
+- [Patch Notes](#patch-notes)
+- [Copyright](#copyright)
+
 ## Installation
 
 1. All needed files and libraries are contained in the **'ZoomBookmarks_install_vX.X.zip'** file.<br>
