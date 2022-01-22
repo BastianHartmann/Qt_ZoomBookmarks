@@ -19,6 +19,15 @@ version without loosing your saved meetings, you can follow the following steps:
 3. Now you can replace the program files with the files of the newer version.
 4. Finally, replace the new (and empty) **meetings.json** file with the one you saved in step 2.
 
+## Automatic Execution at Startup
+
+If you want ZoomBookmarks to be executed automatically right afer the statup of Windows, you can proceed as follows:
+
+1. Press **Windows Key** + **R** to open the *Run*-window.
+2. Enter **shell:startup** in the *Run*-window and hit the **Return** key.
+3. In the folder that opens, the **shortcut** to the *ZoomBookmarks.exe* file must be placed.
+
+
 ## Patch Notes:
 ### Version 1.1
 * Functionality of editing existing meetings has been added.
